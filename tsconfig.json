@@ -1,4 +1,9 @@
 {
+  /**
+   * files 字段用于指明需要 tsc 编译的一个或多个 ts 文件
+   * 当指定的文件或文件夹不存在时，会提示 ❌ 错误！
+   */
+//  "files": [],
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
@@ -20,6 +25,28 @@
       "@/*": ["src/*"]
     }
   },
+  /**
+   * include 字段用于指明需要被 tsc 编译的文件或文件夹列表
+   */
   "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  /**
+   * exclude 字段用于排除不需要 tsc 编译的文件或文件夹列表
+   * 注意： exclude 字段中的声明只对 include 字段有排除效果，对 files 字段无影响，即与 include 字段中的值互斥。
+   * 如果 tsconfig.json 文件中 files 和 include 字段都不存在，则默认包含 tsconfig.json 文件所在目录及
+   * 子目录的所有文件，且排除在 exclude 字段中声明的文件或文件夹。
+   */
+//  "exclude": [],
+
+  /**
+   * compileOnSave 是声明是否需要在保存时候自动触发 tsc 编译的字段，一般来说，我们的代码编译过程会通过 Rollup、Webpack
+   * 等打包构建工具，并且使用热更新，因此无需配置该项，保持缺省即可。
+   */
+//  "compileOnSave": false,
+
+  "references": [{ "path": "./tsconfig.node.json" }],
+
+  /**
+   * extends 字段用于指明继承已有的 tsconfig 配置规则文件
+   */
+  "extends": ""
 }
